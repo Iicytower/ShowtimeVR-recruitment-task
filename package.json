@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "express": "^4.18.1",
-    "node-json-db": "^1.6.0"
+    "node-json-db": "^1.6.0",
+    "obj-valid": "^0.7.0"
   }
 }
