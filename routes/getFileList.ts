@@ -1,4 +1,4 @@
-import { getFileList } from "../controllers/getFileList";
+import { getFileList } from '../controllers/getFileList';
 import { Router } from 'express';
 const router = Router();
 

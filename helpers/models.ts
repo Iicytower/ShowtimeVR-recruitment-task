@@ -10,4 +10,17 @@ interface AddDeviceToGroupRequestBodyWithId extends AddDeviceToGroupRequestBodyB
   groupId: number;
 }
 
-export type AddDeviceToGroupRequestBody = AddDeviceToGroupRequestBodyWithName | AddDeviceToGroupRequestBodyWithId
+export type AddDeviceToGroupRequestBody =
+  | AddDeviceToGroupRequestBodyWithName
+  | AddDeviceToGroupRequestBodyWithId;
+
+export type Device = {
+  id: number;
+  files: string[];
+};
+
+export type Group = {
+  id: number;
+  name: string;
+  devices: number[];
+};

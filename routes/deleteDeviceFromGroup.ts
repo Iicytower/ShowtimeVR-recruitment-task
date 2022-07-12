@@ -1,4 +1,4 @@
-import { deleteDeviceFromGroup } from "../controllers/deleteDeviceFromGroup";
+import { deleteDeviceFromGroup } from '../controllers/deleteDeviceFromGroup';
 import { Router } from 'express';
 const router = Router();
 
