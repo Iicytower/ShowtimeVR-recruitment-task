@@ -1,18 +1,8 @@
-interface AddDeviceToGroupRequestBodyBase {
+export type AddDeviceToGroupRequestBody = {
   deviceId: number;
-}
-
-interface AddDeviceToGroupRequestBodyWithName extends AddDeviceToGroupRequestBodyBase {
-  groupName: string;
-}
-
-interface AddDeviceToGroupRequestBodyWithId extends AddDeviceToGroupRequestBodyBase {
-  groupId: number;
-}
-
-export type AddDeviceToGroupRequestBody =
-  | AddDeviceToGroupRequestBodyWithName
-  | AddDeviceToGroupRequestBodyWithId;
+  groupName?: string;
+  groupId?: number;
+};
 
 export type Device = {
   id: number;
@@ -24,3 +14,7 @@ export type Group = {
   name: string;
   devices: number[];
 };
+
+export enum ErrorMessages {
+  unhandledException = 'Unhandled exception.',
+}
