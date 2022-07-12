@@ -1,4 +1,4 @@
-import { AddDeviceToGroupRequestBody, ErrorMessages, Group } from "../../helpers/models";
+import { AddDeviceToGroupRequestBody, DeleteDeviceFromGroup, ErrorMessages, Group } from "../../helpers/models";
 import { db } from "../database";
 
 export async function pullGroups(): Promise<Group[]> {
@@ -42,4 +42,9 @@ export async function addDevice(item: AddDeviceToGroupRequestBody): Promise<Grou
 
   return ErrorMessages.unhandledException;
 
+}
+
+export async function deleteDevice(item: DeleteDeviceFromGroup): Promise<Group[] | string> {
+  
+  return 'placeholder';
 }

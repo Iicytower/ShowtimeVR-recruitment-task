@@ -23,6 +23,12 @@ export async function validator(req: Request, res: Response, next: NextFunction)
     doesBodyIsCorrect = false;
   }
 
+  if (!doesBodyIsCorrect) {
+    return res.status(404).json({
+      msg: 'Wrong request body structure.',
+    });
+  }
+
   const devices = await pullDevicesIds();
 
   if (!devices.includes(reqBody.deviceId)) {
@@ -31,11 +37,5 @@ export async function validator(req: Request, res: Response, next: NextFunction)
     });
   }
 
-  if (!doesBodyIsCorrect) {
-    return res.status(404).json({
-      msg: 'Wrong request body structure.',
-    });
-  }
-
-  next();
+  return next();
 }
