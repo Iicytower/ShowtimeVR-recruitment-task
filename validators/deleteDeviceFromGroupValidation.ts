@@ -1,11 +1,11 @@
 import { NextFunction, Request, Response } from 'express';
-import { AddDeviceToGroupRequestBody } from '../helpers/models';
+import { DeleteDeviceFromGroupRequestBody } from '../helpers/models';
 import { checkSchema } from 'obj-valid';
 import { pullDevicesIds } from '../database/queries/devices';
 import { pullGroups } from '../database/queries/groups';
 
 export async function validator(req: Request, res: Response, next: NextFunction) {
-  const reqBody: AddDeviceToGroupRequestBody = req.body;
+  const reqBody: DeleteDeviceFromGroupRequestBody = req.body;
   let doesBodyIsCorrect = true;
 
   if (reqBody.hasOwnProperty('groupName')) {

@@ -4,6 +4,8 @@ export type AddDeviceToGroupRequestBody = {
   groupId?: number;
 };
 
+export type DeleteDeviceFromGroupRequestBody = AddDeviceToGroupRequestBody;
+
 export type Device = {
   id: number;
   files: string[];
