@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
-import { AddDeviceToGroupRequestBody, ErrorMessages, Group } from '../helpers/models';
+import { AddDeviceToGroupRequestBody, ErrorMessages, Group } from '../models';
 import { addDevice } from '../database/queries/groups';
 
-export async function addDeviceToGroup(req: Request, res: Response) {
+export async function addDeviceToGroupCtrl(req: Request, res: Response) {
   const reqBody: AddDeviceToGroupRequestBody = req.body;
   try {
     const response: Group[] | string | Error = await addDevice(reqBody);

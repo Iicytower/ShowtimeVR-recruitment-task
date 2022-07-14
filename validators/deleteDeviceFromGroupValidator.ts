@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { DeleteDeviceFromGroupRequestBody, ErrorMessages } from '../helpers/models';
+import { DeleteDeviceFromGroupRequestBody, ErrorMessages } from '../models';
 import { checkSchema } from 'obj-valid';
 import { pullDevicesIds } from '../database/queries/devices';
 import { pullGroups } from '../database/queries/groups';
@@ -64,6 +64,6 @@ export async function validator(req: Request, res: Response, next: NextFunction)
     return next();
   } catch (error) {
     console.error(error);
-    return res.status(500).json(ErrorMessages.Validation);
+    return res.status(500).json(ErrorMessages.UnhandledException);
   }
 }

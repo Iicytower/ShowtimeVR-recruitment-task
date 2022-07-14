@@ -1,8 +1,8 @@
-import { deleteDeviceFromGroup } from '../controllers/deleteDeviceFromGroup';
+import { deleteDeviceFromGroupCtrl } from '../controllers/deleteDeviceFromGroupCtrl';
 import { Router } from 'express';
-import { validator } from '../validators/deleteDeviceFromGroupValidation';
+import { validator } from '../validators/deleteDeviceFromGroupValidator';
 const router = Router();
 
-router.delete('/delete', validator, deleteDeviceFromGroup);
+router.delete('/delete', validator, deleteDeviceFromGroupCtrl);
 
 export { router };

@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { validator } from '../validators/addDeviceToGroupValidator';
 
-import { addDeviceToGroup } from '../controllers/addDeviceToGroup';
+import { addDeviceToGroupCtrl } from '../controllers/addDeviceToGroupCtrl';
 const router = Router();
 
-router.post('/add', validator, addDeviceToGroup);
+router.post('/add', validator, addDeviceToGroupCtrl);
 
 export { router };

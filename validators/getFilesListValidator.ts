@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { ErrorMessages, FilesListQuery, Group } from '../helpers/models';
+import { ErrorMessages, FilesListQuery, Group } from '../models';
 import { pullGroups } from '../database/queries/groups';
 
 export async function validator(req: Request, res: Response, next: NextFunction) {
@@ -62,6 +62,6 @@ export async function validator(req: Request, res: Response, next: NextFunction)
     return next();
   } catch (error) {
     console.error(error);
-    return res.status(500).json(ErrorMessages.Validation);
+    return res.status(500).json(ErrorMessages.UnhandledException);
   }
 }

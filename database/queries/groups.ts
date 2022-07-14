@@ -1,4 +1,4 @@
-import { AddDeviceToGroupRequestBody, DeleteDeviceFromGroupRequestBody, ErrorMessages, Group } from "../../helpers/models";
+import { AddDeviceToGroupRequestBody, DeleteDeviceFromGroupRequestBody, ErrorMessages, Group } from "../../models";
 import { db } from "../database";
 
 export async function pullGroups(): Promise<Group[] | Error> {

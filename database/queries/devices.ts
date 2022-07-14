@@ -1,5 +1,5 @@
 import { filterFalsyValues } from "../../helpers/helpers";
-import { Device, ErrorMessages } from "../../helpers/models";
+import { Device, ErrorMessages } from "../../models";
 import { db } from "../database";
 
 export async function pullDevices(): Promise<Device[] | Error> {

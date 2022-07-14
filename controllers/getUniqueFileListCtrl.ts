@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
 import { getFilesList } from '../database/queries/devices';
 import { pullGroups } from '../database/queries/groups';
-import { ErrorMessages, FilesListQuery, Group } from '../helpers/models';
+import { ErrorMessages, FilesListQuery, Group } from '../models';
 import { filterFalsyValues } from '../helpers/helpers';
 
-export async function getUniqueFileList(req: Request, res: Response) {
+export async function getUniqueFileListCtrl(req: Request, res: Response) {
   const { groupIds, groupNames }: FilesListQuery = req.query;
 
   let groupIdsSplitted: number[];

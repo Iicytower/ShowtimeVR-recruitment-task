@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 import { deleteDevice } from '../database/queries/groups';
-import { DeleteDeviceFromGroupRequestBody, ErrorMessages, Group } from '../helpers/models';
+import { DeleteDeviceFromGroupRequestBody, ErrorMessages, Group } from '../models';
 
-export async function deleteDeviceFromGroup(req: Request, res: Response) {
+export async function deleteDeviceFromGroupCtrl(req: Request, res: Response) {
   const reqBody: DeleteDeviceFromGroupRequestBody = req.body;
   try {
     const response: Group[] | string | Error = await deleteDevice(reqBody);
