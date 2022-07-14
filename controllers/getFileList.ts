@@ -6,9 +6,6 @@ import { ErrorMessages, FilesListQuery, Group } from '../helpers/models';
 export async function getFileList(req: Request, res: Response) {
   const { groupIds, groupNames }: FilesListQuery = req.query;
 
-  // const groupIdsSplitted = (groupIds) ? groupIds.split(',') : '';
-  // const groupNamesSplitted = (groupNames) ? groupNames.split(',') : '';
-
   let groupIdsSplitted: number[];
   if (groupIds) {
     groupIdsSplitted = groupIds.split(',').map((el) => Number(el));
@@ -39,11 +36,11 @@ export async function getFileList(req: Request, res: Response) {
 
   const filesList = await getFilesList(uniqueDevices);
 
-  if(filesList.length === 0){
+  if (filesList.length === 0) {
     return res.status(204);
   }
 
-  if(filesList.length > 0){
+  if (filesList.length > 0) {
     return res.status(200).json({
       msg: 'files list is following',
       filesList,
@@ -51,5 +48,4 @@ export async function getFileList(req: Request, res: Response) {
   }
 
   return res.status(500).json(ErrorMessages.unhandledException);
-
 }
