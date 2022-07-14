@@ -20,3 +20,8 @@ export type Group = {
 export enum ErrorMessages {
   unhandledException = 'Unhandled exception.',
 }
+
+export type FilesListQuery = {
+  groupIds?: string;
+  groupNames?: string;
+};
