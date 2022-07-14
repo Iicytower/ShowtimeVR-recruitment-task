@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { FilesListQuery, Group } from '../helpers/models';
+import { ErrorMessages, FilesListQuery, Group } from '../helpers/models';
 import { pullGroups } from '../database/queries/groups';
 
 export async function validator(req: Request, res: Response, next: NextFunction) {
@@ -16,43 +16,52 @@ export async function validator(req: Request, res: Response, next: NextFunction)
 
   const { groupNames, groupIds } = query;
 
-  const groups: Group[] = await pullGroups();
+  try {
+    const groups: Group[] | Error = await pullGroups();
 
-  if (groupIds) {
-    const groupIdsSplitted = groupIds.split(',');
+    if (groups instanceof Error) {
+      throw new Error(ErrorMessages.Validation);
+    }
 
-    for (const groupId of groupIdsSplitted) {
-      if (!Number(groupId)) {
+    if (groupIds) {
+      const groupIdsSplitted = groupIds.split(',');
+
+      for (const groupId of groupIdsSplitted) {
+        if (!Number(groupId)) {
+          return res.status(404).json({
+            msg: `GroupId ${groupId} is not an integer.`,
+          });
+        }
+      }
+
+      const containsAll = groupIdsSplitted.every(
+        (idFromRequest) => !!groups.find(({ id }) => id === Number(idFromRequest)),
+      );
+
+      if (!containsAll) {
         return res.status(404).json({
-          msg: `GroupId ${groupId} is not an integer.`,
+          msg: 'We do not have groups with provided ids. At least one.',
         });
       }
     }
 
-    const containsAll = groupIdsSplitted.every(
-      (idFromRequest) => !!groups.find(({ id }) => id === Number(idFromRequest)),
-    );
+    if (groupNames) {
+      const groupNamesSplitted = groupNames.split(',');
 
-    if (!containsAll) {
-      return res.status(404).json({
-        msg: 'We do not have groups with provided ids. At least one.',
-      });
+      const containsAll = groupNamesSplitted.every(
+        (nameFromRequest) => !!groups.find(({ name }) => name === nameFromRequest),
+      );
+
+      if (!containsAll) {
+        return res.status(404).json({
+          msg: 'We do not have groups with provided names. At least one.',
+        });
+      }
     }
+
+    return next();
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json(ErrorMessages.Validation);
   }
-
-  if (groupNames) {
-    const groupNamesSplitted = groupNames.split(',');
-
-    const containsAll = groupNamesSplitted.every(
-      (nameFromRequest) => !!groups.find(({ name }) => name === nameFromRequest),
-    );
-
-    if (!containsAll) {
-      return res.status(404).json({
-        msg: 'We do not have groups with provided names. At least one.',
-      });
-    }
-  }
-
-  return next();
 }

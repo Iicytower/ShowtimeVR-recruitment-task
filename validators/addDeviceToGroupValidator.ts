@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from 'express';
-import { AddDeviceToGroupRequestBody } from '../helpers/models';
+import { AddDeviceToGroupRequestBody, ErrorMessages } from '../helpers/models';
 import { checkSchema } from 'obj-valid';
 import { pullDevicesIds } from '../database/queries/devices';
 
@@ -29,13 +29,22 @@ export async function validator(req: Request, res: Response, next: NextFunction)
     });
   }
 
-  const devices = await pullDevicesIds();
+  try {
+    const devices = await pullDevicesIds();
 
-  if (!devices.includes(reqBody.deviceId)) {
-    return res.status(404).json({
-      msg: 'We do not have such device id in the database.',
-    });
+    if (devices instanceof Error) {
+      throw new Error(ErrorMessages.Validation);
+    }
+
+    if (!devices.includes(reqBody.deviceId)) {
+      return res.status(404).json({
+        msg: 'We do not have such device id in the database.',
+      });
+    }
+
+    return next();
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json(ErrorMessages.Validation);
   }
-
-  return next();
 }
