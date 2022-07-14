@@ -2,6 +2,7 @@ import { Request, Response } from 'express';
 import { getFilesList } from '../database/queries/devices';
 import { pullGroups } from '../database/queries/groups';
 import { ErrorMessages, FilesListQuery, Group } from '../helpers/models';
+import { filterFalsyValues } from '../helpers/helpers';
 
 export async function getFileList(req: Request, res: Response) {
   const { groupIds, groupNames }: FilesListQuery = req.query;
@@ -18,10 +19,8 @@ export async function getFileList(req: Request, res: Response) {
 
   const groups: Group[] = await pullGroups();
 
-  //TODO
-  //@ts-ignore
   const devices: number[] = groups
-    .map(({ id, name, devices }: Group) => {
+    .flatMap(({ id, name, devices }: Group) => {
       if (groupIds && groupIdsSplitted.includes(id)) {
         return devices;
       }
@@ -29,8 +28,7 @@ export async function getFileList(req: Request, res: Response) {
         return devices;
       }
     })
-    .filter((el) => el)
-    .flat();
+    .filter(filterFalsyValues);
 
   const uniqueDevices: number[] = [...new Set(devices)];
 

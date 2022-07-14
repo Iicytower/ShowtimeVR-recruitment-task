@@ -1,3 +1,4 @@
+import { filterFalsyValues } from "../../helpers/helpers";
 import { Device } from "../../helpers/models";
 import { db } from "../database";
 
@@ -17,15 +18,13 @@ export async function getFilesList(devicesIds: number[]): Promise<string[]> {
 
   const devices: Device[] = await pullDevices();
 
-  //TODO
-  //@ts-ignore
-  const files: string[] = devices.map(({id, files}) => {
+  const files: string[] = devices.flatMap(({id, files}) => {
 
     if(devicesIds.includes(id)){
       return files;
     }
 
-  }).filter(el => el).flat();
+  }).filter(filterFalsyValues);
 
   return [...new Set(files)];
 
