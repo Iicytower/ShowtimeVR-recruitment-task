@@ -8,7 +8,7 @@ function configDatabase() {
 
     return db;
   } catch (error) {
-    console.error(ErrorMessages.databaseConnection);
+    console.error(ErrorMessages.DatabaseConnection);
     console.error(error);
     process.exit(1);
   }

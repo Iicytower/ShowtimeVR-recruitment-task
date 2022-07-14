@@ -6,7 +6,7 @@ export async function pullGroups(): Promise<Group[] | Error> {
   try {
     return await db.getData('/groups');
   } catch (error: unknown) {
-    return new Error(ErrorMessages.pullGroups);
+    return new Error(ErrorMessages.PullGroups);
   }
 
 }
@@ -16,7 +16,7 @@ export async function pullGroupsIds(): Promise<number[] | Error> {
   try {
     const groups = await pullGroups();
     if(groups instanceof Error){
-      throw new Error(ErrorMessages.pullGroupsIds);
+      throw new Error(ErrorMessages.PullGroupsIds);
     }
     return groups.map((item: Group) => item.id);
 
@@ -24,7 +24,7 @@ export async function pullGroupsIds(): Promise<number[] | Error> {
     if(error instanceof Error){
       return error;
     } else {
-      return new Error(ErrorMessages.pullGroupsIds);
+      return new Error(ErrorMessages.PullGroupsIds);
     }
   }
 }
@@ -35,7 +35,7 @@ export async function addDevice(item: AddDeviceToGroupRequestBody): Promise<Grou
     const groups: Group[] | Error = await pullGroups();
   
     if (groups instanceof Error){
-      throw new Error(ErrorMessages.addDevice);
+      throw new Error(ErrorMessages.AddDevice);
     }
 
     const findedIndexGroup = groups.findIndex(({ id, name }) => item.groupId === id || item.groupName === name);
@@ -65,13 +65,13 @@ export async function addDevice(item: AddDeviceToGroupRequestBody): Promise<Grou
       return await pullGroups();
     }
     
-    return ErrorMessages.unhandledException;
+    return ErrorMessages.UnhandledException;
     
   } catch (error) {
     if(error instanceof Error){
       return error;
     } else {
-      return new Error(ErrorMessages.pullGroupsIds);
+      return new Error(ErrorMessages.PullGroupsIds);
     }
   }
 }
@@ -82,7 +82,7 @@ export async function deleteDevice(item: DeleteDeviceFromGroupRequestBody): Prom
     const groups: Group[] | Error = await pullGroups();
   
     if (groups instanceof Error){
-      throw new Error(ErrorMessages.addDevice);
+      throw new Error(ErrorMessages.AddDevice);
     }
   
     const findedIndexGroup = groups.findIndex(({ id, name }) => item.groupId === id || item.groupName === name);
@@ -105,13 +105,13 @@ export async function deleteDevice(item: DeleteDeviceFromGroupRequestBody): Prom
   
     }
     
-    return ErrorMessages.unhandledException;
+    return ErrorMessages.UnhandledException;
   
   } catch (error) {
     if(error instanceof Error){
       return error;
     } else {
-      return new Error(ErrorMessages.pullGroupsIds);
+      return new Error(ErrorMessages.PullGroupsIds);
     }
   }
   

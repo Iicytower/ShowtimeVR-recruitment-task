@@ -1,11 +1,9 @@
 import * as express from "express";
-import * as dotenv from "dotenv";
+import * as dotenv from "dotenv"; dotenv.config();
 import { router } from "./routes/indexRouter";
-dotenv.config();
 
 const app: express.Application = express();
 
-app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 app.use('/', router);

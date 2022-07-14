@@ -7,7 +7,7 @@ export async function pullDevices(): Promise<Device[] | Error> {
   try {
     return await db.getData('/devices');
   } catch (error: unknown) {
-    return new Error(ErrorMessages.pullDevices)
+    return new Error(ErrorMessages.PullDevices)
   }
 
 }
@@ -17,7 +17,7 @@ export async function pullDevicesIds(): Promise<number[] | Error> {
   try {
     const devices = await pullDevices();
     if(devices instanceof Error){
-      throw new Error(ErrorMessages.pullDevicesIds);
+      throw new Error(ErrorMessages.PullDevicesIds);
     }
     return devices.map((item: Device) => item.id);
 
@@ -25,7 +25,7 @@ export async function pullDevicesIds(): Promise<number[] | Error> {
     if(error instanceof Error){
       return error;
     } else {
-      return new Error(ErrorMessages.pullDevicesIds);
+      return new Error(ErrorMessages.PullDevicesIds);
     }
   }
 
@@ -37,7 +37,7 @@ export async function getFilesList(devicesIds: number[]): Promise<string[] | Err
     const devices: Device[] | Error = await pullDevices();
 
     if(devices instanceof Error){
-      throw new Error(ErrorMessages.getFilesList)
+      throw new Error(ErrorMessages.GetFilesList)
     }
     
     const files: string[] = devices.flatMap(({id, files}) => {
@@ -53,7 +53,7 @@ export async function getFilesList(devicesIds: number[]): Promise<string[] | Err
     if(error instanceof Error){
       return error;
     } else {
-      return new Error(ErrorMessages.getFilesList);
+      return new Error(ErrorMessages.GetFilesList);
     }
   }
 }

@@ -18,18 +18,18 @@ export type Group = {
 };
 
 export enum ErrorMessages {
-  unhandledException = 'Unhandled exception.',
-  pullDevices = '[ERROR] Problem with database. pullDevices()',
-  pullDevicesIds = '[ERROR] Problem with database. pullDevicesIds()',
-  getFilesList = '[ERROR] Problem with database. getFilesList()',
-  pullGroups = '[ERROR] Problem with database. pullGroups()',
-  pullGroupsIds = '[ERROR] Problem with database. pullGroupsIds()',
-  addDevice = '[ERROR] Problem with database. addDevice()',
-  databaseConnection = '[ERROR] Problem with database connection.',
+  UnhandledException = 'Unhandled exception.',
+  PullDevices = '[ERROR] Problem with database. pullDevices()',
+  PullDevicesIds = '[ERROR] Problem with database. pullDevicesIds()',
+  GetFilesList = '[ERROR] Problem with database. getFilesList()',
+  PullGroups = '[ERROR] Problem with database. pullGroups()',
+  PullGroupsIds = '[ERROR] Problem with database. pullGroupsIds()',
+  AddDevice = '[ERROR] Problem with database. addDevice()',
+  DatabaseConnection = '[ERROR] Problem with database connection.',
   Validation = '[ERROR] Unhandled exception in validation.',
-  addDeviceToGroup = '[ERROR] Problem with add device controller.',
+  AddDeviceToGroup = '[ERROR] Problem with add device controller.',
   DeleteDeviceFromGroup = '[ERROR] Problem with delete device controller.',
-  GetFilesList = '[ERROR] Problem with get files list controller.',
+  GetUniqueFilesList = '[ERROR] Problem with get files list controller.',
 }
 
 export type FilesListQuery = {

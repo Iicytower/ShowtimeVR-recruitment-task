@@ -11,11 +11,11 @@ export async function deleteDeviceFromGroup(req: Request, res: Response) {
       throw new Error(ErrorMessages.DeleteDeviceFromGroup);
     }
 
-    if (typeof response === 'string' && response !== ErrorMessages.unhandledException) {
+    if (typeof response === 'string' && response !== ErrorMessages.UnhandledException) {
       return res.status(404).json(response);
     }
 
-    if (response !== ErrorMessages.unhandledException) {
+    if (response !== ErrorMessages.UnhandledException) {
       return res.status(200).json(response);
     }
 

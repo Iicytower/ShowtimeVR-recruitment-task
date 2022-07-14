@@ -4,7 +4,7 @@ import { pullGroups } from '../database/queries/groups';
 import { ErrorMessages, FilesListQuery, Group } from '../helpers/models';
 import { filterFalsyValues } from '../helpers/helpers';
 
-export async function getFileList(req: Request, res: Response) {
+export async function getUniqueFileList(req: Request, res: Response) {
   const { groupIds, groupNames }: FilesListQuery = req.query;
 
   let groupIdsSplitted: number[];
@@ -21,7 +21,7 @@ export async function getFileList(req: Request, res: Response) {
     const groups: Group[] | Error = await pullGroups();
 
     if (groups instanceof Error) {
-      throw new Error(ErrorMessages.GetFilesList);
+      throw new Error(ErrorMessages.GetUniqueFilesList);
     }
 
     const devices: number[] = groups
@@ -40,7 +40,7 @@ export async function getFileList(req: Request, res: Response) {
     const filesList: string[] | Error = await getFilesList(uniqueDevices);
 
     if (filesList instanceof Error) {
-      throw new Error(ErrorMessages.GetFilesList);
+      throw new Error(ErrorMessages.GetUniqueFilesList);
     }
 
     if (filesList.length === 0) {
@@ -54,9 +54,9 @@ export async function getFileList(req: Request, res: Response) {
       });
     }
 
-    return res.status(500).json(ErrorMessages.unhandledException);
+    return res.status(500).json(ErrorMessages.UnhandledException);
   } catch (error) {
     console.error(error);
-    return res.status(500).json(ErrorMessages.DeleteDeviceFromGroup);
+    return res.status(500).json(ErrorMessages.GetUniqueFilesList);
   }
 }
