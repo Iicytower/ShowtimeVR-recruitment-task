@@ -12,7 +12,7 @@ export async function addDeviceToGroupCtrl(req: Request, res: Response) {
     }
 
     if (typeof response === 'string' && response !== ErrorMessages.UnhandledException) {
-      return res.status(404).json(response);
+      return res.status(400).json(response);
     }
 
     if (response !== ErrorMessages.UnhandledException) {

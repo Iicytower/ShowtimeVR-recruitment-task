@@ -9,12 +9,24 @@ export async function validator(req: Request, res: Response, next: NextFunction)
     (!query.hasOwnProperty('groupNames') || !query.groupNames) &&
     (!query.hasOwnProperty('groupIds') || !query.groupIds)
   ) {
-    return res.status(404).json({
+    return res.status(400).json({
       msg: 'Please provide query parameters groupNames and/or groupIds.',
     });
   }
 
   const { groupNames, groupIds } = query;
+
+  if(groupNames && typeof groupNames !== 'string') {
+    return res.status(400).json({
+      msg: 'groupNames must be a string. Possibly you add this query parameter twice.',
+    });
+  }
+
+  if(groupIds && typeof groupIds !== 'string') {
+    return res.status(400).json({
+      msg: 'groupIds must be a string. Possibly you add this query parameter twice.',
+    });
+  }
 
   try {
     const groups: Group[] | Error = await pullGroups();
@@ -28,7 +40,7 @@ export async function validator(req: Request, res: Response, next: NextFunction)
 
       for (const groupId of groupIdsSplitted) {
         if (!Number(groupId)) {
-          return res.status(404).json({
+          return res.status(400).json({
             msg: `GroupId ${groupId} is not an integer.`,
           });
         }

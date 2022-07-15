@@ -25,7 +25,7 @@ export async function validator(req: Request, res: Response, next: NextFunction)
   }
 
   if (!doesBodyIsCorrect) {
-    return res.status(404).json({
+    return res.status(400).json({
       msg: 'Wrong request body structure.',
     });
   }
@@ -56,7 +56,7 @@ export async function validator(req: Request, res: Response, next: NextFunction)
     }
 
     if (!devices.includes(reqBody.deviceId)) {
-      return res.status(404).json({
+      return res.status(400).json({
         msg: 'We do not have such device id in the database.',
       });
     }
