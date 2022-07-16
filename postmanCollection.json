@@ -1,0 +1,116 @@
+{
+	"info": {
+		"_postman_id": "977e6003-d1da-4fc8-8dce-f938f57e505d",
+		"name": "showtimevr-reqruitment-task",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "addDeviceToGroup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"groupName\": \"Cookie1\",\n    \"deviceId\": 2\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/addDeviceToGroup",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"addDeviceToGroup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteDeviceFromGroup",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"groupName\": \"Cookie1\",\n    \"deviceId\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/deleteDeviceFromGroup",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"deleteDeviceFromGroup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getFileList",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:3000/api/getFilesList?groupNames=Cookie1&groupIds=1657822838190,1657822832183,1657822859068",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"getFilesList"
+					],
+					"query": [
+						{
+							"key": "groupIds",
+							"value": "1,2,3",
+							"disabled": true
+						},
+						{
+							"key": "groupNames",
+							"value": "Cookie1"
+						},
+						{
+							"key": "groupIds",
+							"value": "1657822838190,1657822832183,1657822859068"
+						},
+						{
+							"key": "groupNames",
+							"value": "qwe,rty",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
