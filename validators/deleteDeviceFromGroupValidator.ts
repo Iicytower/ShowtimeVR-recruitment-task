@@ -4,7 +4,11 @@ import { checkSchema } from 'obj-valid';
 import { pullDevicesIds } from '../database/queries/devices';
 import { pullGroups } from '../database/queries/groups';
 
-export async function validator(req: Request, res: Response, next: NextFunction) {
+export async function deleteDeviceFromGroupValidator(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   const reqBody: DeleteDeviceFromGroupRequestBody = req.body;
   let doesBodyIsCorrect = true;
 

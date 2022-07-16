@@ -18,7 +18,7 @@ export type Group = {
 };
 
 export enum ErrorMessages {
-  UnhandledException = 'Unhandled exception.',
+  UnhandledException = '[ERROR] Unhandled exception.',
   PullDevices = '[ERROR] Problem with database. pullDevices()',
   PullDevicesIds = '[ERROR] Problem with database. pullDevicesIds()',
   GetFilesList = '[ERROR] Problem with database. getFilesList()',
@@ -30,6 +30,7 @@ export enum ErrorMessages {
   AddDeviceToGroup = '[ERROR] Problem with add device controller.',
   DeleteDeviceFromGroup = '[ERROR] Problem with delete device controller.',
   GetUniqueFilesList = '[ERROR] Problem with get files list controller.',
+  LackDatabase = '[ERROR] There are no database file and exampleStartData has been modified or deleted.',
 }
 
 export type FilesListQuery = {

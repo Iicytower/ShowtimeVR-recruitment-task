@@ -1,12 +1,17 @@
 import { Router } from 'express';
-import { router as addDeviceToGroup } from './addDeviceToGroup';
-import { router as deleteDeviceFromGroup } from './deleteDeviceFromGroup';
-import { router as getFileList } from './getFileList';
+import { addDeviceToGroupCtrl } from '../controllers/addDeviceToGroupCtrl';
+import { deleteDeviceFromGroupCtrl } from '../controllers/deleteDeviceFromGroupCtrl';
+import { getUniqueFileListCtrl } from '../controllers/getUniqueFileListCtrl';
+import {
+  addDeviceToGroupValidator,
+  deleteDeviceFromGroupValidator,
+  getFilesListValidator,
+} from '../validators/indexValidators';
 
 const router = Router();
 
-router.use('/api', addDeviceToGroup);
-router.use('/api', deleteDeviceFromGroup);
-router.use('/api', getFileList);
+router.post('/addDeviceToGroup', addDeviceToGroupValidator, addDeviceToGroupCtrl);
+router.delete('/deleteDeviceFromGroup', deleteDeviceFromGroupValidator, deleteDeviceFromGroupCtrl);
+router.get('/getFilesList', getFilesListValidator, getUniqueFileListCtrl);
 
 export { router };

@@ -6,8 +6,8 @@ const app: express.Application = express();
 
 app.use(express.json());
 
-app.use('/', router);
-const PORT: number = (process.env.PORT) ? parseInt(process.env.PORT) : 3002;
+app.use('/api', router);
+const PORT: number = (process.env.PORT) ? parseInt(process.env.PORT) : 3000;
 
 app.listen(PORT, () => {
   console.log(`App is listening on port ${PORT}!`);

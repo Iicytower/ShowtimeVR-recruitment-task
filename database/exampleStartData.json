@@ -1,0 +1,26 @@
+{
+  "devices": [
+      {
+          "id": 1,
+          "files": [
+              "notavirus.exe",
+              "deathstarblueprint.pdf"
+          ]
+      },
+      {
+          "id": 2,
+          "files": [
+              "deathstarblueprint.pdf",
+              "peterdinklagenudes.zip"
+          ]
+      },
+      {
+          "id": 3,
+          "files": [
+              "peterdinklagenudes.zip",
+              "keyboardcat.mp4"
+          ]
+      }
+  ],
+  "groups": []
+}

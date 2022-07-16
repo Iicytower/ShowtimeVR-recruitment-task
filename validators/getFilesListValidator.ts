@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from 'express';
 import { ErrorMessages, FilesListQuery, Group } from '../models';
 import { pullGroups } from '../database/queries/groups';
 
-export async function validator(req: Request, res: Response, next: NextFunction) {
+export async function getFilesListValidator(req: Request, res: Response, next: NextFunction) {
   const query: FilesListQuery = req.query;
 
   if (
@@ -16,13 +16,13 @@ export async function validator(req: Request, res: Response, next: NextFunction)
 
   const { groupNames, groupIds } = query;
 
-  if(groupNames && typeof groupNames !== 'string') {
+  if (groupNames && typeof groupNames !== 'string') {
     return res.status(400).json({
       msg: 'groupNames must be a string. Possibly you add this query parameter twice.',
     });
   }
 
-  if(groupIds && typeof groupIds !== 'string') {
+  if (groupIds && typeof groupIds !== 'string') {
     return res.status(400).json({
       msg: 'groupIds must be a string. Possibly you add this query parameter twice.',
     });

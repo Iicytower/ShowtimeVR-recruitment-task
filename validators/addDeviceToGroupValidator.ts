@@ -3,7 +3,7 @@ import { AddDeviceToGroupRequestBody, ErrorMessages } from '../models';
 import { checkSchema } from 'obj-valid';
 import { pullDevicesIds } from '../database/queries/devices';
 
-export async function validator(req: Request, res: Response, next: NextFunction) {
+export async function addDeviceToGroupValidator(req: Request, res: Response, next: NextFunction) {
   const reqBody: AddDeviceToGroupRequestBody = req.body;
   let doesBodyIsCorrect = true;
 
